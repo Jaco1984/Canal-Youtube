@@ -1,0 +1,38 @@
+<div class="container main-container">
+
+    <h1>Canal de Youtube</h1>
+    <div class="card-columns">
+        <div class="card" *ngFor=" let tarjeta of video">
+            <img class="card-img-top" [src]="tarjeta.thumbnails.high.url" [alt]="tarjeta.title">
+            <div class="card-body">
+                <h5 class="card-title">{{ tarjeta.title}}</h5>
+                <button (click)="verVideo(tarjeta)" type="button" class="btn btn-outline-primary">Ver Video</button>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+        </div>
+
+    </div>
+    <button (click)="cargarMas()" class="btn btn-outline-primary btn-block" type="button">Cargar Mas </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" *ngIf="videoSel">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">{{ videoSel.title }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-body">
+                    <iframe width="450" height="300" [src]="videoSel.resourceId.videoId | youtubeApp" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" (click)="cerrarModal()" class="btn btn-secondary" data-dismiss="modal">Cerrar Modal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
